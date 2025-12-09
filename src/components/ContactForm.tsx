@@ -4,6 +4,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const leadSchema = z.object({
+  name: z.string().trim().min(1, "El nombre es obligatorio").max(100, "Máximo 100 caracteres"),
+  email: z.string().trim().email("Email inválido").max(255, "Máximo 255 caracteres"),
+  phone: z.string().trim().max(20, "Máximo 20 caracteres").optional().or(z.literal("")),
+  restaurant_name: z.string().trim().min(1, "El restaurante es obligatorio").max(100, "Máximo 100 caracteres"),
+  message: z.string().trim().max(1000, "Máximo 1000 caracteres").optional().or(z.literal("")),
+});
 
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,16 +22,55 @@ const ContactForm = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const formData = new FormData(e.currentTarget);
+    const rawData = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      restaurant_name: formData.get("restaurant") as string,
+      message: formData.get("message") as string,
+    };
 
-    toast({
-      title: "¡Mensaje enviado!",
-      description: "Nos pondremos en contacto contigo en menos de 24 horas.",
-    });
+    // Validate input
+    const result = leadSchema.safeParse(rawData);
+    if (!result.success) {
+      const firstError = result.error.errors[0];
+      toast({
+        title: "Error de validación",
+        description: firstError.message,
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
 
-    setIsLoading(false);
-    (e.target as HTMLFormElement).reset();
+    try {
+      const { error } = await supabase.from("leads").insert({
+        name: result.data.name,
+        email: result.data.email,
+        phone: result.data.phone || null,
+        restaurant_name: result.data.restaurant_name,
+        message: result.data.message || null,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "¡Mensaje enviado!",
+        description: "Nos pondremos en contacto contigo en menos de 24 horas.",
+      });
+
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      console.error("Error submitting lead:", error);
+      toast({
+        title: "Error al enviar",
+        description: "Por favor, inténtalo de nuevo más tarde.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -52,6 +101,7 @@ const ContactForm = () => {
                   name="name"
                   type="text"
                   required
+                  maxLength={100}
                   placeholder="Tu nombre"
                   className="h-12"
                 />
@@ -65,6 +115,7 @@ const ContactForm = () => {
                   name="restaurant"
                   type="text"
                   required
+                  maxLength={100}
                   placeholder="Nombre del restaurante"
                   className="h-12"
                 />
@@ -81,6 +132,7 @@ const ContactForm = () => {
                   name="email"
                   type="email"
                   required
+                  maxLength={255}
                   placeholder="tu@email.com"
                   className="h-12"
                 />
@@ -93,6 +145,7 @@ const ContactForm = () => {
                   id="phone"
                   name="phone"
                   type="tel"
+                  maxLength={20}
                   placeholder="+34 612 345 678"
                   className="h-12"
                 />
@@ -107,6 +160,7 @@ const ContactForm = () => {
                 id="message"
                 name="message"
                 rows={4}
+                maxLength={1000}
                 placeholder="Cuéntanos sobre tu restaurante y qué necesitas..."
                 className="resize-none"
               />
