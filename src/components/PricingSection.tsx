@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Check, Sparkles } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const plans = [
   {
@@ -54,75 +55,79 @@ const PricingSection = () => {
   return (
     <section id="precios" className="py-16 md:py-24">
       <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
-            Precios
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Planes adaptados a tu restaurante
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Sin sorpresas ni costes ocultos. Elige el plan que mejor se adapte a tus 
-            necesidades y empieza a automatizar hoy mismo.
-          </p>
-        </div>
+        <ScrollReveal animation="fade-up">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
+              Precios
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Planes adaptados a tu restaurante
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Sin sorpresas ni costes ocultos. Elige el plan que mejor se adapte a tus 
+              necesidades y empieza a automatizar hoy mismo.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
-            <div
-              key={plan.name}
-              className={`relative p-6 md:p-8 rounded-2xl border-2 transition-all duration-300 animate-fade-up ${
-                plan.highlighted
-                  ? "bg-gradient-to-b from-primary/5 to-accent/5 border-primary shadow-card scale-105"
-                  : "bg-card border-border hover:border-primary/30"
-              }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-accent text-accent-foreground text-sm font-semibold rounded-full flex items-center gap-1">
-                  <Sparkles className="w-4 h-4" />
-                  Más popular
-                </div>
-              )}
-
-              <div className="text-center mb-6">
-                <h3 className="text-xl font-bold text-foreground mb-2">{plan.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
-                
-                <div className="mb-2">
-                  <span className="text-sm text-muted-foreground">Setup: </span>
-                  <span className="text-2xl font-bold text-foreground">{plan.setupPrice}€</span>
-                </div>
-                <div>
-                  <span className="text-4xl font-extrabold text-foreground">{plan.monthlyPrice}€</span>
-                  <span className="text-muted-foreground">/mes</span>
-                </div>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <Check className={`w-5 h-5 shrink-0 ${plan.highlighted ? "text-primary" : "text-whatsapp"}`} />
-                    <span className="text-sm text-muted-foreground">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                variant={plan.highlighted ? "accent" : "outline"}
-                className="w-full"
-                size="lg"
-                asChild
+            <ScrollReveal key={plan.name} animation="fade-up" delay={index * 150}>
+              <div
+                className={`relative p-6 md:p-8 rounded-2xl border-2 transition-all duration-300 h-full flex flex-col ${
+                  plan.highlighted
+                    ? "bg-gradient-to-b from-primary/5 to-accent/5 border-primary shadow-card scale-105"
+                    : "bg-card border-border hover:border-primary/30"
+                }`}
               >
-                <a href="#contacto">Solicitar instalación</a>
-              </Button>
-            </div>
+                {plan.highlighted && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-accent text-accent-foreground text-sm font-semibold rounded-full flex items-center gap-1">
+                    <Sparkles className="w-4 h-4" />
+                    Más popular
+                  </div>
+                )}
+
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-bold text-foreground mb-2">{plan.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
+                  
+                  <div className="mb-2">
+                    <span className="text-sm text-muted-foreground">Setup: </span>
+                    <span className="text-2xl font-bold text-foreground">{plan.setupPrice}€</span>
+                  </div>
+                  <div>
+                    <span className="text-4xl font-extrabold text-foreground">{plan.monthlyPrice}€</span>
+                    <span className="text-muted-foreground">/mes</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-3 mb-8 flex-grow">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3">
+                      <Check className={`w-5 h-5 shrink-0 ${plan.highlighted ? "text-primary" : "text-whatsapp"}`} />
+                      <span className="text-sm text-muted-foreground">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  variant={plan.highlighted ? "accent" : "outline"}
+                  className="w-full"
+                  size="lg"
+                  asChild
+                >
+                  <a href="#contacto">Solicitar instalación</a>
+                </Button>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
 
-        <p className="text-center text-sm text-muted-foreground mt-8">
-          Todos los precios en EUR + IVA. Cancelación en cualquier momento.
-        </p>
+        <ScrollReveal animation="fade-in" delay={400}>
+          <p className="text-center text-sm text-muted-foreground mt-8">
+            Todos los precios en EUR + IVA. Cancelación en cualquier momento.
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );

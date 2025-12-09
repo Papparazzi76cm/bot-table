@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import ScrollReveal from "./ScrollReveal";
 
 const faqs = [
   {
@@ -40,37 +41,41 @@ const FAQSection = () => {
   return (
     <section id="faq" className="py-16 md:py-24 bg-card">
       <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
-            FAQ
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Preguntas frecuentes
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Resolvemos tus dudas. Si no encuentras la respuesta que buscas, 
-            escríbenos y te ayudamos encantados.
-          </p>
-        </div>
+        <ScrollReveal animation="fade-up">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
+              FAQ
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Preguntas frecuentes
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Resolvemos tus dudas. Si no encuentras la respuesta que buscas, 
+              escríbenos y te ayudamos encantados.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-background border border-border rounded-xl px-6 data-[state=open]:shadow-soft transition-all"
-              >
-                <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+        <ScrollReveal animation="fade-up" delay={100}>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="bg-background border border-border rounded-xl px-6 data-[state=open]:shadow-soft transition-all"
+                >
+                  <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-5">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
