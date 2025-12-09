@@ -75,7 +75,7 @@ const SolutionSection = () => {
                     <Bot className="w-5 h-5 text-whatsapp-foreground" />
                   </div>
                   <div>
-                    <p className="font-bold text-foreground">ReservaBot</p>
+                    <p className="font-bold text-foreground">Trazo Digital</p>
                     <p className="text-xs text-muted-foreground">En línea</p>
                   </div>
                 </div>

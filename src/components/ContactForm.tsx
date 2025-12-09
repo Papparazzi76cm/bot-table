@@ -97,7 +97,7 @@ const ContactForm = () => {
             </h2>
             <p className="text-lg text-muted-foreground">
               Déjanos tus datos y te contactamos en menos de 24 horas para 
-              mostrarte cómo ReservaBot puede transformar tu restaurante.
+              mostrarte cómo Trazo Digital puede transformar tu restaurante.
             </p>
           </div>
 
