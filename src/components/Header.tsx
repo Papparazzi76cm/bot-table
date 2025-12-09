@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, MessageCircle } from "lucide-react";
 
@@ -37,11 +38,11 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="outline" size="sm">
-            Iniciar Sesión
+          <Button variant="outline" size="sm" asChild>
+            <Link to="/auth">Iniciar Sesión</Link>
           </Button>
-          <Button variant="accent" size="sm">
-            Solicitar Demo
+          <Button variant="accent" size="sm" asChild>
+            <a href="#contacto">Solicitar Demo</a>
           </Button>
         </div>
 
@@ -69,11 +70,11 @@ const Header = () => {
               </a>
             ))}
             <div className="flex flex-col gap-2 pt-4 border-t border-border">
-              <Button variant="outline" className="w-full">
-                Iniciar Sesión
+              <Button variant="outline" className="w-full" asChild>
+                <Link to="/auth">Iniciar Sesión</Link>
               </Button>
-              <Button variant="accent" className="w-full">
-                Solicitar Demo
+              <Button variant="accent" className="w-full" asChild>
+                <a href="#contacto" onClick={() => setIsMenuOpen(false)}>Solicitar Demo</a>
               </Button>
             </div>
           </nav>
