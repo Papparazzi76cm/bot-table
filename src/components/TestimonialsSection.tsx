@@ -4,7 +4,7 @@ const testimonials = [
   {
     name: "María García",
     role: "Propietaria, La Trattoria del Mar",
-    content: "Desde que implementamos ReservaBot, hemos reducido las llamadas en un 70%. Mis camareros ahora pueden centrarse en atender bien a los clientes en lugar de estar al teléfono.",
+    content: "Desde que implementamos Trazo Digital, hemos reducido las llamadas en un 70%. Mis camareros ahora pueden centrarse en atender bien a los clientes en lugar de estar al teléfono.",
     rating: 5
   },
   {

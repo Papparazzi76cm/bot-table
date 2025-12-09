@@ -40,8 +40,8 @@ const Footer = () => {
             <ul className="space-y-3 text-primary-foreground/70">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <a href="mailto:hola@reservabot.es" className="hover:text-primary-foreground transition-colors">
-                  hola@reservabot.es
+                <a href="mailto:hola@trazodigital.es" className="hover:text-primary-foreground transition-colors">
+                  hola@trazodigital.es
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -60,7 +60,7 @@ const Footer = () => {
 
         <div className="border-t border-primary-foreground/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-primary-foreground/50">
-            © 2024 ReservaBot. Todos los derechos reservados.
+            © 2024 Trazo Digital. Todos los derechos reservados.
           </p>
           <div className="flex gap-6 text-sm text-primary-foreground/50">
             <a href="#" className="hover:text-primary-foreground transition-colors">Aviso Legal</a>
