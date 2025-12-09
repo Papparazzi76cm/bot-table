@@ -1,4 +1,5 @@
-import { Bot, Clock, CalendarCheck, Bell, LayoutDashboard, CheckCircle } from "lucide-react";
+import { Clock, CalendarCheck, Bell, LayoutDashboard, Bot } from "lucide-react";
+import mockupTablet from "@/assets/mockup-tablet.png";
 
 const features = [
   {
@@ -68,46 +69,12 @@ const SolutionSection = () => {
 
           {/* Visual */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 md:p-12">
-              <div className="bg-card rounded-2xl shadow-card p-6 md:p-8 space-y-6">
-                <div className="flex items-center gap-3 pb-4 border-b border-border">
-                  <div className="w-10 h-10 rounded-full bg-whatsapp flex items-center justify-center">
-                    <Bot className="w-5 h-5 text-whatsapp-foreground" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-foreground">Trazo Digital</p>
-                    <p className="text-xs text-muted-foreground">En línea</p>
-                  </div>
-                </div>
-
-                {/* Chat simulation */}
-                <div className="space-y-4">
-                  <div className="flex justify-end">
-                    <div className="bg-primary text-primary-foreground rounded-2xl rounded-tr-sm px-4 py-2 max-w-[80%]">
-                      Hola, quiero reservar mesa para 4 personas
-                    </div>
-                  </div>
-                  <div className="flex justify-start">
-                    <div className="bg-secondary text-secondary-foreground rounded-2xl rounded-tl-sm px-4 py-2 max-w-[80%]">
-                      ¡Hola! 👋 Claro, te ayudo con tu reserva. ¿Para qué día y hora la necesitas?
-                    </div>
-                  </div>
-                  <div className="flex justify-end">
-                    <div className="bg-primary text-primary-foreground rounded-2xl rounded-tr-sm px-4 py-2 max-w-[80%]">
-                      Para el sábado a las 21:00
-                    </div>
-                  </div>
-                  <div className="flex justify-start">
-                    <div className="bg-secondary text-secondary-foreground rounded-2xl rounded-tl-sm px-4 py-2 max-w-[80%]">
-                      <div className="flex items-center gap-2 text-whatsapp font-medium">
-                        <CheckCircle className="w-4 h-4" />
-                        ¡Perfecto! Mesa confirmada
-                      </div>
-                      <p className="mt-1 text-sm">Sábado 14 dic, 21:00h - 4 personas</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="relative z-10">
+              <img
+                src={mockupTablet}
+                alt="Panel de gestión de restaurante en tablet"
+                className="w-full max-w-xl mx-auto rounded-2xl shadow-2xl"
+              />
             </div>
             
             {/* Decorative */}
