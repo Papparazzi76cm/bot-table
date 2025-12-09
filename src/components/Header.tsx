@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import trazoLogo from "@/assets/trazo-digital-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,11 +18,8 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20">
-        <a href="#" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-xl bg-gradient-hero flex items-center justify-center">
-            <MessageCircle className="w-5 h-5 text-primary-foreground" />
-          </div>
-          <span className="font-bold text-xl text-foreground">ReservaBot</span>
+        <a href="#" className="flex items-center">
+          <img src={trazoLogo} alt="Trazo Digital" className="h-12 w-auto" />
         </a>
 
         {/* Desktop Navigation */}

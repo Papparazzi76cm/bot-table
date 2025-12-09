@@ -1,5 +1,6 @@
 import { MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import trazoLogo from "@/assets/trazo-digital-logo.png";
 
 const Footer = () => {
   return (
@@ -8,11 +9,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <MessageCircle className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="font-bold text-xl">ReservaBot</span>
+            <a href="#" className="flex items-center mb-4">
+              <img src={trazoLogo} alt="Trazo Digital" className="h-14 w-auto" />
             </a>
             <p className="text-primary-foreground/70 mb-6 max-w-sm">
               Automatizamos las reservas de tu restaurante con chatbots inteligentes 
