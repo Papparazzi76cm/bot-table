@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,7 +19,7 @@ const leadSchema = z.object({
 
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-
+  const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -67,12 +68,8 @@ const ContactForm = () => {
         },
       }).catch((err) => console.error("Email notification error:", err));
 
-      toast({
-        title: "¡Mensaje enviado!",
-        description: "Nos pondremos en contacto contigo en menos de 24 horas.",
-      });
-
       (e.target as HTMLFormElement).reset();
+      navigate("/gracias");
     } catch (error) {
       console.error("Error submitting lead:", error);
       toast({
