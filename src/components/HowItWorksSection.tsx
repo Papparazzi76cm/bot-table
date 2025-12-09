@@ -1,30 +1,38 @@
 import { MessageSquare, Palette, Smartphone, TestTube, Rocket } from "lucide-react";
+import mockupChat from "@/assets/mockup-chat.png";
+import mockupTablet from "@/assets/mockup-tablet.png";
+import mockupApp from "@/assets/mockup-app.png";
 
 const steps = [
   {
     icon: MessageSquare,
     title: "Reunión rápida",
-    description: "Analizamos las necesidades de tu restaurante en una videollamada de 30 min."
+    description: "Analizamos las necesidades de tu restaurante en una videollamada de 30 min.",
+    mockup: mockupChat,
   },
   {
     icon: Palette,
     title: "Diseño del chatbot",
-    description: "Configuramos el flujo de conversación y personalizamos los mensajes."
+    description: "Configuramos el flujo de conversación y personalizamos los mensajes.",
+    mockup: mockupTablet,
   },
   {
     icon: Smartphone,
     title: "Instalación en WhatsApp",
-    description: "Conectamos el chatbot a tu número de WhatsApp Business."
+    description: "Conectamos el chatbot a tu número de WhatsApp Business.",
+    mockup: mockupApp,
   },
   {
     icon: TestTube,
     title: "Pruebas + ajustes",
-    description: "Testeamos juntos y afinamos los detalles hasta dejarlo perfecto."
+    description: "Testeamos juntos y afinamos los detalles hasta dejarlo perfecto.",
+    mockup: mockupChat,
   },
   {
     icon: Rocket,
     title: "¡Listo para funcionar!",
-    description: "Tu chatbot empieza a recibir reservas automáticamente."
+    description: "Tu chatbot empieza a recibir reservas automáticamente.",
+    mockup: mockupTablet,
   }
 ];
 
@@ -45,41 +53,54 @@ const HowItWorksSection = () => {
           </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
           {/* Connection line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary hidden md:block" />
+          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary hidden lg:block" />
 
-          <div className="space-y-8 md:space-y-0">
+          <div className="space-y-12 lg:space-y-16">
             {steps.map((step, index) => (
               <div
                 key={step.title}
-                className={`relative flex items-start gap-6 md:gap-0 animate-fade-up ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                className={`relative flex flex-col lg:flex-row items-center gap-8 lg:gap-12 animate-fade-up ${
+                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Content */}
-                <div className={`flex-1 md:w-1/2 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
-                  <div className={`p-6 rounded-2xl bg-background border border-border hover:shadow-card transition-all duration-300 ${index % 2 === 0 ? "md:ml-auto" : ""} max-w-sm`}>
-                    <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground text-sm">{step.description}</p>
+                {/* Content Card */}
+                <div className={`flex-1 ${index % 2 === 0 ? "lg:pr-16 lg:text-right" : "lg:pl-16"}`}>
+                  <div className={`p-6 rounded-2xl bg-background border border-border hover:shadow-card hover:border-primary/20 transition-all duration-300 ${index % 2 === 0 ? "lg:ml-auto" : ""} max-w-md`}>
+                    <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? "lg:justify-end" : ""}`}>
+                      <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center lg:hidden">
+                        <step.icon className="w-5 h-5 text-accent" />
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground">{step.title}</h3>
+                    </div>
+                    <p className="text-muted-foreground">{step.description}</p>
                   </div>
                 </div>
 
-                {/* Icon */}
-                <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-16 h-16 rounded-2xl bg-gradient-hero flex items-center justify-center shadow-soft z-10">
-                  <step.icon className="w-7 h-7 text-primary-foreground" />
+                {/* Center Icon */}
+                <div className="absolute left-1/2 -translate-x-1/2 w-14 h-14 rounded-2xl bg-gradient-hero flex items-center justify-center shadow-soft z-10 hidden lg:flex">
+                  <step.icon className="w-6 h-6 text-primary-foreground" />
                 </div>
 
-                {/* Step number */}
-                <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 text-8xl font-extrabold text-primary/5 ${
-                  index % 2 === 0 ? "right-0" : "left-0"
-                }`}>
-                  {index + 1}
+                {/* Mockup Image */}
+                <div className="flex-1">
+                  <div className={`relative ${index % 2 === 0 ? "lg:pl-16" : "lg:pr-16"}`}>
+                    <div className="relative max-w-sm mx-auto lg:mx-0">
+                      <div className="absolute inset-0 bg-gradient-accent rounded-2xl blur-2xl opacity-20 scale-95" />
+                      <img 
+                        src={step.mockup} 
+                        alt={step.title}
+                        className="relative rounded-2xl shadow-card border border-border/50 w-full object-cover aspect-[4/3]"
+                      />
+                      {/* Step number badge */}
+                      <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-accent text-accent-foreground font-bold flex items-center justify-center text-lg shadow-accent">
+                        {index + 1}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block flex-1 md:w-1/2" />
               </div>
             ))}
           </div>
