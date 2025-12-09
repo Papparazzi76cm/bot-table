@@ -26,12 +26,20 @@ const CTASection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="xl" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
-                Solicitar Demo Gratis
-                <ArrowRight className="w-5 h-5" />
+              <Button variant="hero" size="xl" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" asChild>
+                <a href="#contacto">
+                  Solicitar Demo Gratis
+                  <ArrowRight className="w-5 h-5" />
+                </a>
               </Button>
-              <Button variant="heroOutline" size="xl">
-                Hablar por WhatsApp
+              <Button variant="heroOutline" size="xl" asChild>
+                <a 
+                  href="https://wa.me/34612345678?text=Hola,%20me%20interesa%20el%20sistema%20de%20reservas%20por%20WhatsApp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Hablar por WhatsApp
+                </a>
               </Button>
             </div>
 

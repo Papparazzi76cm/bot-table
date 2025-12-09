@@ -112,8 +112,9 @@ const PricingSection = () => {
                 variant={plan.highlighted ? "accent" : "outline"}
                 className="w-full"
                 size="lg"
+                asChild
               >
-                Solicitar instalación
+                <a href="#contacto">Solicitar instalación</a>
               </Button>
             </div>
           ))}
