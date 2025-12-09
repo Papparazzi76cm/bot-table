@@ -34,7 +34,7 @@ const CTASection = () => {
               </Button>
               <Button variant="heroOutline" size="xl" asChild>
                 <a 
-                  href="https://wa.me/34612345678?text=Hola,%20me%20interesa%20el%20sistema%20de%20reservas%20por%20WhatsApp"
+                  href="https://wa.me/34611040204?text=Hola,%20me%20interesa%20el%20sistema%20de%20reservas%20por%20WhatsApp"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
