@@ -55,6 +55,17 @@ const ContactForm = () => {
 
       if (error) throw error;
 
+      // Send email notifications (fire and forget - don't block form submission)
+      supabase.functions.invoke("send-demo-notification", {
+        body: {
+          name: result.data.name,
+          email: result.data.email,
+          phone: result.data.phone || undefined,
+          restaurant_name: result.data.restaurant_name,
+          message: result.data.message || undefined,
+        },
+      }).catch((err) => console.error("Email notification error:", err));
+
       toast({
         title: "¡Mensaje enviado!",
         description: "Nos pondremos en contacto contigo en menos de 24 horas.",
