@@ -2,6 +2,8 @@ import { MessageSquare, Palette, Smartphone, TestTube, Rocket } from "lucide-rea
 import whatsappMockup1 from "@/assets/whatsapp-mockup-1.png";
 import whatsappMockup2 from "@/assets/whatsapp-mockup-2.png";
 import calendarDashboard from "@/assets/calendar-dashboard.png";
+import whatsappTesting from "@/assets/whatsapp-testing.png";
+import restaurantSuccess from "@/assets/restaurant-success.png";
 
 const steps = [
   {
@@ -26,13 +28,13 @@ const steps = [
     icon: TestTube,
     title: "Pruebas + ajustes",
     description: "Testeamos juntos y afinamos los detalles hasta dejarlo perfecto.",
-    mockup: whatsappMockup1,
+    mockup: whatsappTesting,
   },
   {
     icon: Rocket,
     title: "¡Listo para funcionar!",
     description: "Tu chatbot empieza a recibir reservas automáticamente.",
-    mockup: calendarDashboard,
+    mockup: restaurantSuccess,
   }
 ];
 
