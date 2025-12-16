@@ -1,5 +1,6 @@
 import { Phone, UserX, Clock, AlertTriangle } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import stressedOwner from "@/assets/stressed-owner.png";
 
 const problems = [
   {
@@ -28,20 +29,34 @@ const ProblemSection = () => {
   return (
     <section className="py-16 md:py-24 bg-card">
       <div className="container">
-        <ScrollReveal animation="fade-up">
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-            <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
-              El problema
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              ¿Te suena familiar?
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              La gestión tradicional de reservas consume tiempo, genera estrés y te hace 
-              perder clientes. Es hora de cambiar las reglas del juego.
-            </p>
-          </div>
-        </ScrollReveal>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-12 md:mb-16">
+          <ScrollReveal animation="fade-up">
+            <div className="text-center lg:text-left">
+              <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
+                El problema
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                ¿Te suena familiar?
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                La gestión tradicional de reservas consume tiempo, genera estrés y te hace 
+                perder clientes. Es hora de cambiar las reglas del juego.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal animation="slide-left" delay={200}>
+            <div className="relative">
+              <img
+                src={stressedOwner}
+                alt="Dueño de restaurante estresado atendiendo llamadas"
+                className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
+              />
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-destructive/20 rounded-2xl -z-10" />
+              <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-destructive/10 rounded-2xl -z-10" />
+            </div>
+          </ScrollReveal>
+        </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {problems.map((problem, index) => (

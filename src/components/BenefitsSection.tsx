@@ -1,6 +1,6 @@
 import { Clock, TrendingUp, HeadphonesIcon, ShieldCheck, Star } from "lucide-react";
-import mockupApp from "@/assets/mockup-app.png";
-import mockupProfile from "@/assets/mockup-profile.jpeg";
+import restaurantOwner from "@/assets/restaurant-owner-confirmed.png";
+import restaurantInterior from "@/assets/restaurant-interior.png";
 import ScrollReveal from "./ScrollReveal";
 
 const benefits = [
@@ -80,14 +80,14 @@ const BenefitsSection = () => {
           <ScrollReveal animation="fade-up" delay={200}>
             <div className="relative flex justify-center items-center gap-4">
               <img
-                src={mockupApp}
-                alt="Aplicación móvil Trazo"
-                className="w-48 md:w-56 drop-shadow-2xl"
+                src={restaurantOwner}
+                alt="Dueño de restaurante recibiendo confirmación de reserva"
+                className="w-48 md:w-56 drop-shadow-2xl rounded-2xl"
               />
               <img
-                src={mockupProfile}
-                alt="Perfil de usuario en Trazo"
-                className="w-44 md:w-52 drop-shadow-2xl -mt-12"
+                src={restaurantInterior}
+                alt="Interior de restaurante con servicio profesional"
+                className="w-44 md:w-52 drop-shadow-2xl rounded-2xl -mt-12"
               />
             </div>
           </ScrollReveal>

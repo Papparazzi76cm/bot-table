@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
-import mockupChat from "@/assets/mockup-chat.png";
+import whatsappMockup from "@/assets/whatsapp-mockup-1.png";
 
 const HeroSection = () => {
   return (
@@ -62,9 +62,9 @@ const HeroSection = () => {
           <div className="relative animate-fade-up animation-delay-200">
             <div className="relative z-10 animate-float">
               <img
-                src={mockupChat}
+                src={whatsappMockup}
                 alt="WhatsApp chatbot para reservas de restaurante"
-                className="w-full max-w-md mx-auto drop-shadow-2xl"
+                className="w-full max-w-md mx-auto drop-shadow-2xl rounded-3xl"
               />
             </div>
             {/* Decorative elements */}
