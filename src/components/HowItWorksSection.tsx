@@ -1,38 +1,38 @@
 import { MessageSquare, Palette, Smartphone, TestTube, Rocket } from "lucide-react";
-import mockupChat from "@/assets/mockup-chat.png";
-import mockupTablet from "@/assets/mockup-tablet.png";
-import mockupApp from "@/assets/mockup-app.png";
+import whatsappMockup1 from "@/assets/whatsapp-mockup-1.png";
+import whatsappMockup2 from "@/assets/whatsapp-mockup-2.png";
+import calendarDashboard from "@/assets/calendar-dashboard.png";
 
 const steps = [
   {
     icon: MessageSquare,
     title: "Reunión rápida",
     description: "Analizamos las necesidades de tu restaurante en una videollamada de 30 min.",
-    mockup: mockupChat,
+    mockup: whatsappMockup1,
   },
   {
     icon: Palette,
     title: "Diseño del chatbot",
     description: "Configuramos el flujo de conversación y personalizamos los mensajes.",
-    mockup: mockupTablet,
+    mockup: calendarDashboard,
   },
   {
     icon: Smartphone,
     title: "Instalación en WhatsApp",
     description: "Conectamos el chatbot a tu número de WhatsApp Business.",
-    mockup: mockupApp,
+    mockup: whatsappMockup2,
   },
   {
     icon: TestTube,
     title: "Pruebas + ajustes",
     description: "Testeamos juntos y afinamos los detalles hasta dejarlo perfecto.",
-    mockup: mockupChat,
+    mockup: whatsappMockup1,
   },
   {
     icon: Rocket,
     title: "¡Listo para funcionar!",
     description: "Tu chatbot empieza a recibir reservas automáticamente.",
-    mockup: mockupTablet,
+    mockup: calendarDashboard,
   }
 ];
 

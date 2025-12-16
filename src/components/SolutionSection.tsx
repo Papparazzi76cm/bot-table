@@ -1,5 +1,5 @@
 import { Clock, CalendarCheck, Bell, LayoutDashboard, Bot } from "lucide-react";
-import mockupTablet from "@/assets/mockup-tablet.png";
+import calendarDashboard from "@/assets/calendar-dashboard.png";
 import ScrollReveal from "./ScrollReveal";
 
 const features = [
@@ -73,8 +73,8 @@ const SolutionSection = () => {
             <div className="relative">
               <div className="relative z-10">
                 <img
-                  src={mockupTablet}
-                  alt="Panel de gestión de restaurante en tablet"
+                  src={calendarDashboard}
+                  alt="Panel de gestión de reservas con calendario y múltiples locales"
                   className="w-full max-w-xl mx-auto rounded-2xl shadow-2xl"
                 />
               </div>
