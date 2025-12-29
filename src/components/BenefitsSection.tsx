@@ -79,16 +79,20 @@ const BenefitsSection = () => {
           {/* Mockups */}
           <ScrollReveal animation="fade-up" delay={200}>
             <div className="relative flex justify-center items-center gap-4">
-              <img
-                src={restaurantOwner}
-                alt="Dueño de restaurante recibiendo confirmación de reserva"
-                className="w-48 md:w-56 drop-shadow-2xl rounded-2xl"
-              />
-              <img
-                src={restaurantInterior}
-                alt="Interior de restaurante con servicio profesional"
-                className="w-44 md:w-52 drop-shadow-2xl rounded-2xl -mt-12"
-              />
+              <div className="group cursor-pointer">
+                <img
+                  src={restaurantOwner}
+                  alt="Dueño de restaurante recibiendo confirmación de reserva"
+                  className="w-48 md:w-56 drop-shadow-2xl rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]"
+                />
+              </div>
+              <div className="group cursor-pointer">
+                <img
+                  src={restaurantInterior}
+                  alt="Interior de restaurante con servicio profesional"
+                  className="w-44 md:w-52 drop-shadow-2xl rounded-2xl -mt-12 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]"
+                />
+              </div>
             </div>
           </ScrollReveal>
         </div>

@@ -46,14 +46,14 @@ const ProblemSection = () => {
           </ScrollReveal>
 
           <ScrollReveal animation="slide-left" delay={200}>
-            <div className="relative">
+            <div className="relative group cursor-pointer">
               <img
                 src={stressedOwner}
                 alt="Dueño de restaurante estresado atendiendo llamadas"
-                className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
+                className="w-full max-w-md mx-auto rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:-rotate-1 group-hover:shadow-[0_30px_60px_-15px_rgba(220,38,38,0.4)]"
               />
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-destructive/20 rounded-2xl -z-10" />
-              <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-destructive/10 rounded-2xl -z-10" />
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-destructive/20 rounded-2xl -z-10 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12" />
+              <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-destructive/10 rounded-2xl -z-10 transition-all duration-500 group-hover:scale-125 group-hover:-rotate-12" />
             </div>
           </ScrollReveal>
         </div>
