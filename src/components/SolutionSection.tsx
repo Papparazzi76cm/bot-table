@@ -70,18 +70,19 @@ const SolutionSection = () => {
 
           {/* Visual */}
           <ScrollReveal animation="slide-left" delay={200}>
-            <div className="relative">
-              <div className="relative z-10">
+            <div className="relative group cursor-pointer">
+              <div className="relative z-10 overflow-hidden rounded-2xl">
                 <img
                   src={calendarDashboard}
                   alt="Panel de gestión de reservas con calendario y múltiples locales"
-                  className="w-full max-w-xl mx-auto rounded-2xl shadow-2xl"
+                  className="w-full max-w-xl mx-auto rounded-2xl shadow-2xl transition-all duration-700 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               
               {/* Decorative */}
-              <div className="absolute -top-4 -left-4 w-20 h-20 bg-accent/20 rounded-2xl -z-10" />
-              <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-primary/20 rounded-2xl -z-10" />
+              <div className="absolute -top-4 -left-4 w-20 h-20 bg-accent/20 rounded-2xl -z-10 transition-all duration-500 group-hover:scale-125 group-hover:-rotate-12" />
+              <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-primary/20 rounded-2xl -z-10 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12" />
             </div>
           </ScrollReveal>
         </div>

@@ -89,15 +89,17 @@ const HowItWorksSection = () => {
                 {/* Mockup Image */}
                 <div className="flex-1">
                   <div className={`relative ${index % 2 === 0 ? "lg:pl-16" : "lg:pr-16"}`}>
-                    <div className="relative max-w-sm mx-auto lg:mx-0">
-                      <div className="absolute inset-0 bg-gradient-accent rounded-2xl blur-2xl opacity-20 scale-95" />
-                      <img 
-                        src={step.mockup} 
-                        alt={step.title}
-                        className="relative rounded-2xl shadow-card border border-border/50 w-full object-cover aspect-[4/3]"
-                      />
+                    <div className="relative max-w-sm mx-auto lg:mx-0 group cursor-pointer">
+                      <div className="absolute inset-0 bg-gradient-accent rounded-2xl blur-2xl opacity-20 scale-95 transition-all duration-500 group-hover:opacity-40 group-hover:scale-100" />
+                      <div className="overflow-hidden rounded-2xl">
+                        <img 
+                          src={step.mockup} 
+                          alt={step.title}
+                          className="relative rounded-2xl shadow-card border border-border/50 w-full object-cover aspect-[4/3] transition-all duration-500 group-hover:scale-110 group-hover:brightness-105"
+                        />
+                      </div>
                       {/* Step number badge */}
-                      <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-accent text-accent-foreground font-bold flex items-center justify-center text-lg shadow-accent">
+                      <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-accent text-accent-foreground font-bold flex items-center justify-center text-lg shadow-accent transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12">
                         {index + 1}
                       </div>
                     </div>

@@ -59,17 +59,17 @@ const HeroSection = () => {
           </div>
 
           {/* Image */}
-          <div className="relative animate-fade-up animation-delay-200">
+          <div className="relative animate-fade-up animation-delay-200 group">
             <div className="relative z-10 animate-float">
               <img
                 src={whatsappMockup}
                 alt="WhatsApp chatbot para reservas de restaurante"
-                className="w-full max-w-md mx-auto drop-shadow-2xl rounded-3xl"
+                className="w-full max-w-md mx-auto drop-shadow-2xl rounded-3xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-1 group-hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)]"
               />
             </div>
             {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-2xl -z-10" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/20 rounded-2xl -z-10" />
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-2xl -z-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6" />
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/20 rounded-2xl -z-10 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6" />
           </div>
         </div>
       </div>
