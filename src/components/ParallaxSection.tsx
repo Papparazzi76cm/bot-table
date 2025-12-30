@@ -1,6 +1,5 @@
-import { ReactNode, memo } from "react";
+import { ReactNode, useRef, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useParallax } from "@/hooks/use-parallax";
 
 interface ParallaxSectionProps {
   children: ReactNode;
@@ -9,28 +8,47 @@ interface ParallaxSectionProps {
   direction?: "up" | "down";
 }
 
-const ParallaxSection = memo(({
+const ParallaxSection = ({
   children,
   className,
   speed = 0.3,
   direction = "up",
 }: ParallaxSectionProps) => {
-  const { ref, offset } = useParallax<HTMLDivElement>({ speed, direction });
+  const ref = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
+      
+      const rect = ref.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const elementCenter = rect.top + rect.height / 2;
+      const viewportCenter = windowHeight / 2;
+      const distance = elementCenter - viewportCenter;
+      
+      const multiplier = direction === "up" ? -1 : 1;
+      setOffset(distance * speed * multiplier * 0.05);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [speed, direction]);
 
   return (
     <div
       ref={ref}
-      className={cn("relative", className)}
+      className={cn("relative will-change-transform", className)}
       style={{
-        transform: `translate3d(0, ${offset}px, 0)`,
-        willChange: "transform",
+        transform: `translateY(${offset}px)`,
+        transition: "transform 0.1s ease-out",
       }}
     >
       {children}
     </div>
   );
-});
-
-ParallaxSection.displayName = "ParallaxSection";
+};
 
 export default ParallaxSection;
