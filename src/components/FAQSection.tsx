@@ -56,12 +56,11 @@ const FAQSection = () => {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal animation="fade-up" delay={100}>
-          <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <ScrollReveal key={index} animation="fade-up" delay={index * 80}>
                 <AccordionItem
-                  key={index}
                   value={`item-${index}`}
                   className="bg-background border border-border rounded-xl px-6 data-[state=open]:shadow-soft transition-all"
                 >
@@ -72,10 +71,10 @@ const FAQSection = () => {
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </ScrollReveal>
+              </ScrollReveal>
+            ))}
+          </Accordion>
+        </div>
       </div>
     </section>
   );

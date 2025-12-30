@@ -4,6 +4,7 @@ import whatsappMockup2 from "@/assets/whatsapp-mockup-2.png";
 import calendarDashboard from "@/assets/calendar-dashboard.png";
 import whatsappTesting from "@/assets/whatsapp-testing.png";
 import restaurantSuccess from "@/assets/restaurant-success.png";
+import ScrollReveal from "./ScrollReveal";
 
 const steps = [
   {
@@ -42,18 +43,20 @@ const HowItWorksSection = () => {
   return (
     <section id="como-funciona" className="py-16 md:py-24 bg-card">
       <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
-            Proceso
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Cómo funciona
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            En menos de una semana tendrás tu chatbot funcionando. 
-            Nosotros nos encargamos de todo.
-          </p>
-        </div>
+        <ScrollReveal animation="fade-up">
+          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
+              Proceso
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Cómo funciona
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              En menos de una semana tendrás tu chatbot funcionando. 
+              Nosotros nos encargamos de todo.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="relative max-w-5xl mx-auto">
           {/* Connection line */}
@@ -61,13 +64,12 @@ const HowItWorksSection = () => {
 
           <div className="space-y-12 lg:space-y-16">
             {steps.map((step, index) => (
-              <div
-                key={step.title}
-                className={`relative flex flex-col lg:flex-row items-center gap-8 lg:gap-12 animate-fade-up ${
-                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+              <ScrollReveal key={step.title} animation="fade-up" delay={index * 150}>
+                <div
+                  className={`relative flex flex-col lg:flex-row items-center gap-8 lg:gap-12 ${
+                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                  }`}
+                >
                 {/* Content Card */}
                 <div className={`flex-1 ${index % 2 === 0 ? "lg:pr-16 lg:text-right" : "lg:pl-16"}`}>
                   <div className={`p-6 rounded-2xl bg-background border border-border hover:shadow-card hover:border-primary/20 transition-all duration-300 ${index % 2 === 0 ? "lg:ml-auto" : ""} max-w-md`}>
@@ -105,7 +107,8 @@ const HowItWorksSection = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
