@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, memo } from "react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { cn } from "@/lib/utils";
 
@@ -34,7 +34,7 @@ const animations = {
   },
 };
 
-const ScrollReveal = ({
+const ScrollReveal = memo(({
   children,
   className,
   animation = "fade-up",
@@ -46,7 +46,7 @@ const ScrollReveal = ({
 
   return (
     <div
-      ref={ref as React.RefObject<HTMLDivElement>}
+      ref={ref}
       className={cn(
         "transition-all ease-out",
         isVisible ? animations[animation].visible : animations[animation].hidden,
@@ -55,11 +55,14 @@ const ScrollReveal = ({
       style={{
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
+        willChange: isVisible ? "auto" : "opacity, transform",
       }}
     >
       {children}
     </div>
   );
-};
+});
+
+ScrollReveal.displayName = "ScrollReveal";
 
 export default ScrollReveal;
