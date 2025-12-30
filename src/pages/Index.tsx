@@ -12,7 +12,7 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ParallaxSection from "@/components/ParallaxSection";
-import SectionTransition from "@/components/SectionTransition";
+import WaveTransition from "@/components/WaveTransition";
 
 const Index = () => {
   return (
@@ -20,39 +20,39 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        <SectionTransition from="background" to="muted" height="lg" />
+        <WaveTransition from="background" to="muted" variant="wave" />
         <ParallaxSection speed={0.15} direction="up">
           <ProblemSection />
         </ParallaxSection>
-        <SectionTransition from="muted" to="background" height="md" />
+        <WaveTransition from="muted" to="background" variant="curve" flip />
         <ParallaxSection speed={0.2} direction="down">
           <SolutionSection />
         </ParallaxSection>
-        <SectionTransition from="background" to="muted" height="lg" />
+        <WaveTransition from="background" to="muted" variant="slope" />
         <ParallaxSection speed={0.15} direction="up">
           <BenefitsSection />
         </ParallaxSection>
-        <SectionTransition from="muted" to="card" height="md" />
+        <WaveTransition from="muted" to="card" variant="wave" flip />
         <ParallaxSection speed={0.1} direction="down">
           <PricingSection />
         </ParallaxSection>
-        <SectionTransition from="card" to="background" height="lg" />
+        <WaveTransition from="card" to="background" variant="curve" />
         <ParallaxSection speed={0.2} direction="up">
           <HowItWorksSection />
         </ParallaxSection>
-        <SectionTransition from="background" to="muted" height="md" />
+        <WaveTransition from="background" to="muted" variant="slope" flip />
         <ParallaxSection speed={0.15} direction="down">
           <TestimonialsSection />
         </ParallaxSection>
-        <SectionTransition from="muted" to="background" height="lg" />
+        <WaveTransition from="muted" to="background" variant="wave" />
         <ParallaxSection speed={0.1} direction="up">
           <FAQSection />
         </ParallaxSection>
-        <SectionTransition from="background" to="muted" height="md" />
+        <WaveTransition from="background" to="muted" variant="curve" flip />
         <ParallaxSection speed={0.15} direction="down">
           <ContactForm />
         </ParallaxSection>
-        <SectionTransition from="muted" to="primary" height="lg" />
+        <WaveTransition from="muted" to="primary" variant="slope" />
         <CTASection />
       </main>
       <Footer />
