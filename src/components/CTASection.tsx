@@ -15,39 +15,50 @@ const CTASection = () => {
             </div>
 
             <div className="relative z-10 max-w-3xl mx-auto">
-              <div className="w-16 h-16 rounded-2xl bg-primary-foreground/10 flex items-center justify-center mx-auto mb-6">
-                <MessageCircle className="w-8 h-8 text-primary-foreground" />
-              </div>
+              <ScrollReveal animation="fade-up" delay={0}>
+                <div className="w-16 h-16 rounded-2xl bg-primary-foreground/10 flex items-center justify-center mx-auto mb-6">
+                  <MessageCircle className="w-8 h-8 text-primary-foreground" />
+                </div>
+              </ScrollReveal>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
-                ¿Listo para automatizar tus reservas?
-              </h2>
-              <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-                Únete a más de 500 restaurantes que ya disfrutan de reservas automáticas. 
-                Solicita tu demo gratuita y descubre cómo podemos ayudarte.
-              </p>
+              <ScrollReveal animation="fade-up" delay={100}>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
+                  ¿Listo para automatizar tus reservas?
+                </h2>
+              </ScrollReveal>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="hero" size="xl" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" asChild>
-                  <a href="#contacto">
-                    Solicitar Demo Gratis
-                    <ArrowRight className="w-5 h-5" />
-                  </a>
-                </Button>
-                <Button variant="heroOutline" size="xl" asChild>
-                  <a 
-                    href="https://wa.me/34611040204?text=Hola,%20me%20interesa%20el%20sistema%20de%20reservas%20por%20WhatsApp"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Hablar por WhatsApp
-                  </a>
-                </Button>
-              </div>
+              <ScrollReveal animation="fade-up" delay={200}>
+                <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+                  Únete a más de 500 restaurantes que ya disfrutan de reservas automáticas. 
+                  Solicita tu demo gratuita y descubre cómo podemos ayudarte.
+                </p>
+              </ScrollReveal>
 
-              <p className="mt-6 text-sm text-primary-foreground/60">
-                Sin compromiso · Respuesta en 24h · Instalación en 1 semana
-              </p>
+              <ScrollReveal animation="fade-up" delay={300}>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button variant="hero" size="xl" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" asChild>
+                    <a href="#contacto">
+                      Solicitar Demo Gratis
+                      <ArrowRight className="w-5 h-5" />
+                    </a>
+                  </Button>
+                  <Button variant="heroOutline" size="xl" asChild>
+                    <a 
+                      href="https://wa.me/34611040204?text=Hola,%20me%20interesa%20el%20sistema%20de%20reservas%20por%20WhatsApp"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Hablar por WhatsApp
+                    </a>
+                  </Button>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal animation="fade-up" delay={400}>
+                <p className="mt-6 text-sm text-primary-foreground/60">
+                  Sin compromiso · Respuesta en 24h · Instalación en 1 semana
+                </p>
+              </ScrollReveal>
             </div>
           </div>
         </ScrollReveal>
