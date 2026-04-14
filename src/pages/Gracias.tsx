@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowLeft, MessageCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Gracias = () => {
+  const { t } = useLanguage();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -29,29 +32,29 @@ const Gracias = () => {
             </div>
 
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              ¡Gracias por tu interés!
+              {t.gracias.title}
             </h1>
 
             <p className="text-lg text-muted-foreground mb-8">
-              Hemos recibido tu solicitud de demo. Nuestro equipo se pondrá en contacto contigo 
-              en menos de <strong className="text-foreground">24 horas</strong> para agendar una 
-              demostración personalizada de Trazo Digital.
+              {t.gracias.description}{" "}
+              <strong className="text-foreground">{t.gracias.hours}</strong>{" "}
+              {t.gracias.descriptionEnd}
             </p>
 
             <div className="bg-card border border-border rounded-2xl p-6 mb-8">
-              <h2 className="font-semibold text-foreground mb-2">¿Qué sigue?</h2>
+              <h2 className="font-semibold text-foreground mb-2">{t.gracias.nextSteps}</h2>
               <ul className="text-muted-foreground text-left space-y-2">
                 <li className="flex items-start gap-2">
                   <span className="text-accent font-bold">1.</span>
-                  Revisaremos tu solicitud y prepararemos una demo personalizada.
+                  {t.gracias.step1}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent font-bold">2.</span>
-                  Te contactaremos por email o teléfono para confirmar la cita.
+                  {t.gracias.step2}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent font-bold">3.</span>
-                  En la demo, te mostraremos cómo Trazo Digital puede transformar tu restaurante.
+                  {t.gracias.step3}
                 </li>
               </ul>
             </div>
@@ -60,13 +63,13 @@ const Gracias = () => {
               <Button asChild variant="outline" size="lg">
                 <Link to="/">
                   <ArrowLeft className="w-5 h-5" />
-                  Volver al inicio
+                  {t.gracias.backHome}
                 </Link>
               </Button>
               <Button asChild variant="accent" size="lg">
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5" />
-                  Contactar por WhatsApp
+                  {t.gracias.whatsapp}
                 </a>
               </Button>
             </div>

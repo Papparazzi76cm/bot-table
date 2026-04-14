@@ -8,6 +8,7 @@ import { Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 import ScrollReveal from "./ScrollReveal";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const leadSchema = z.object({
   name: z.string().trim().min(1, "El nombre es obligatorio").max(100, "Máximo 100 caracteres"),
@@ -20,6 +21,8 @@ const leadSchema = z.object({
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { t } = useLanguage();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -33,12 +36,11 @@ const ContactForm = () => {
       message: formData.get("message") as string,
     };
 
-    // Validate input
     const result = leadSchema.safeParse(rawData);
     if (!result.success) {
       const firstError = result.error.errors[0];
       toast({
-        title: "Error de validación",
+        title: t.contact.validationError,
         description: firstError.message,
         variant: "destructive",
       });
@@ -57,7 +59,6 @@ const ContactForm = () => {
 
       if (error) throw error;
 
-      // Send email notifications (fire and forget - don't block form submission)
       supabase.functions.invoke("send-demo-notification", {
         body: {
           name: result.data.name,
@@ -73,8 +74,8 @@ const ContactForm = () => {
     } catch (error) {
       console.error("Error submitting lead:", error);
       toast({
-        title: "Error al enviar",
-        description: "Por favor, inténtalo de nuevo más tarde.",
+        title: t.contact.submitError,
+        description: t.contact.submitErrorDesc,
         variant: "destructive",
       });
     } finally {
@@ -89,14 +90,13 @@ const ContactForm = () => {
           <ScrollReveal animation="fade-up">
             <div className="text-center mb-12">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
-                Contacto
+                {t.contact.tag}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Reserva tu demo gratuita
+                {t.contact.title}
               </h2>
               <p className="text-lg text-muted-foreground">
-                Déjanos tus datos y te contactamos en menos de 24 horas para 
-                mostrarte cómo Trazo Digital puede transformar tu restaurante.
+                {t.contact.description}
               </p>
             </div>
           </ScrollReveal>
@@ -106,92 +106,52 @@ const ContactForm = () => {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Nombre *
+                    {t.contact.name} {t.contact.required}
                   </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    maxLength={100}
-                    placeholder="Tu nombre"
-                    className="h-12"
-                  />
+                  <Input id="name" name="name" type="text" required maxLength={100} placeholder={t.contact.namePlaceholder} className="h-12" />
                 </div>
                 <div>
                   <label htmlFor="restaurant" className="block text-sm font-medium text-foreground mb-2">
-                    Restaurante *
+                    {t.contact.restaurant} {t.contact.required}
                   </label>
-                  <Input
-                    id="restaurant"
-                    name="restaurant"
-                    type="text"
-                    required
-                    maxLength={100}
-                    placeholder="Nombre del restaurante"
-                    className="h-12"
-                  />
+                  <Input id="restaurant" name="restaurant" type="text" required maxLength={100} placeholder={t.contact.restaurantPlaceholder} className="h-12" />
                 </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Email *
+                    {t.contact.email} {t.contact.required}
                   </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    maxLength={255}
-                    placeholder="tu@email.com"
-                    className="h-12"
-                  />
+                  <Input id="email" name="email" type="email" required maxLength={255} placeholder={t.contact.emailPlaceholder} className="h-12" />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Teléfono
+                    {t.contact.phone}
                   </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    maxLength={20}
-                    placeholder="+34 612 345 678"
-                    className="h-12"
-                  />
+                  <Input id="phone" name="phone" type="tel" maxLength={20} placeholder={t.contact.phonePlaceholder} className="h-12" />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Mensaje
+                  {t.contact.message}
                 </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  maxLength={1000}
-                  placeholder="Cuéntanos sobre tu restaurante y qué necesitas..."
-                  className="resize-none"
-                />
+                <Textarea id="message" name="message" rows={4} maxLength={1000} placeholder={t.contact.messagePlaceholder} className="resize-none" />
               </div>
 
               <Button type="submit" variant="accent" size="lg" className="w-full" disabled={isLoading}>
-                {isLoading ? (
-                  "Enviando..."
-                ) : (
+                {isLoading ? t.contact.submitting : (
                   <>
-                    Solicitar Demo
+                    {t.contact.submit}
                     <Send className="w-5 h-5" />
                   </>
                 )}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                Al enviar este formulario, aceptas nuestra{" "}
-                <a href="#" className="text-primary hover:underline">política de privacidad</a>.
+                {t.contact.privacy}{" "}
+                <a href="#" className="text-primary hover:underline">{t.contact.privacyLink}</a>.
               </p>
             </form>
           </ScrollReveal>

@@ -1,31 +1,13 @@
 import { Phone, UserX, Clock, AlertTriangle } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import stressedOwner from "@/assets/stressed-owner.png";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-const problems = [
-  {
-    icon: Phone,
-    title: "Llamadas constantes",
-    description: "Tu teléfono no para de sonar durante el servicio, distrayendo a tu equipo."
-  },
-  {
-    icon: UserX,
-    title: "Reservas perdidas",
-    description: "Clientes que llaman fuera de horario y nunca vuelven a intentarlo."
-  },
-  {
-    icon: Clock,
-    title: "Sobrecarga de personal",
-    description: "Tu equipo pierde tiempo valioso gestionando reservas manualmente."
-  },
-  {
-    icon: AlertTriangle,
-    title: "Mala organización",
-    description: "Overbooking, dobles reservas y caos en la gestión de mesas."
-  }
-];
+const icons = [Phone, UserX, Clock, AlertTriangle];
 
 const ProblemSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 md:py-24 bg-card">
       <div className="container">
@@ -33,14 +15,13 @@ const ProblemSection = () => {
           <ScrollReveal animation="fade-up">
             <div className="text-center lg:text-left">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider mb-4 block">
-                El problema
+                {t.problem.tag}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                ¿Te suena familiar?
+                {t.problem.title}
               </h2>
               <p className="text-lg text-muted-foreground">
-                La gestión tradicional de reservas consume tiempo, genera estrés y te hace 
-                perder clientes. Es hora de cambiar las reglas del juego.
+                {t.problem.description}
               </p>
             </div>
           </ScrollReveal>
@@ -49,7 +30,7 @@ const ProblemSection = () => {
             <div className="relative group cursor-pointer">
               <img
                 src={stressedOwner}
-                alt="Dueño de restaurante estresado atendiendo llamadas"
+                alt={t.problem.imageAlt}
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:-rotate-1 group-hover:shadow-[0_30px_60px_-15px_rgba(220,38,38,0.4)]"
               />
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-destructive/20 rounded-2xl -z-10 transition-all duration-500 group-hover:scale-125 group-hover:rotate-12" />
@@ -59,17 +40,20 @@ const ProblemSection = () => {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {problems.map((problem, index) => (
-            <ScrollReveal key={problem.title} animation="fade-up" delay={index * 100}>
-              <div className="group p-6 md:p-8 rounded-2xl bg-background border border-border hover:border-destructive/30 hover:shadow-lg transition-all duration-300 h-full">
-                <div className="w-14 h-14 rounded-xl bg-destructive/10 flex items-center justify-center mb-5 group-hover:bg-destructive/20 transition-colors">
-                  <problem.icon className="w-7 h-7 text-destructive" />
+          {t.problem.items.map((problem, index) => {
+            const Icon = icons[index];
+            return (
+              <ScrollReveal key={index} animation="fade-up" delay={index * 100}>
+                <div className="group p-6 md:p-8 rounded-2xl bg-background border border-border hover:border-destructive/30 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="w-14 h-14 rounded-xl bg-destructive/10 flex items-center justify-center mb-5 group-hover:bg-destructive/20 transition-colors">
+                    <Icon className="w-7 h-7 text-destructive" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{problem.title}</h3>
+                  <p className="text-muted-foreground">{problem.description}</p>
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3">{problem.title}</h3>
-                <p className="text-muted-foreground">{problem.description}</p>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>

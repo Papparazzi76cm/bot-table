@@ -3,16 +3,19 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import trazoLogo from "@/assets/trazo-digital-logo.png";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const navLinks = [
-    { href: "#solucion", label: "Solución" },
-    { href: "#beneficios", label: "Beneficios" },
-    { href: "#precios", label: "Precios" },
-    { href: "#como-funciona", label: "Cómo Funciona" },
-    { href: "#faq", label: "FAQ" },
+    { href: "#solucion", label: t.header.solution },
+    { href: "#beneficios", label: t.header.benefits },
+    { href: "#precios", label: t.header.pricing },
+    { href: "#como-funciona", label: t.header.howItWorks },
+    { href: "#faq", label: t.header.faq },
   ];
 
   return (
@@ -35,22 +38,26 @@ const Header = () => {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3">
+          <LanguageSwitcher />
           <Button variant="outline" size="sm" asChild>
-            <Link to="/auth">Iniciar Sesión</Link>
+            <Link to="/auth">{t.header.login}</Link>
           </Button>
           <Button variant="accent" size="sm" asChild>
-            <a href="#contacto">Solicitar Demo</a>
+            <a href="#contacto">{t.header.requestDemo}</a>
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 text-foreground"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <LanguageSwitcher />
+          <button
+            className="p-2 text-foreground"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -69,10 +76,10 @@ const Header = () => {
             ))}
             <div className="flex flex-col gap-2 pt-4 border-t border-border">
               <Button variant="outline" className="w-full" asChild>
-                <Link to="/auth">Iniciar Sesión</Link>
+                <Link to="/auth">{t.header.login}</Link>
               </Button>
               <Button variant="accent" className="w-full" asChild>
-                <a href="#contacto" onClick={() => setIsMenuOpen(false)}>Solicitar Demo</a>
+                <a href="#contacto" onClick={() => setIsMenuOpen(false)}>{t.header.requestDemo}</a>
               </Button>
             </div>
           </nav>

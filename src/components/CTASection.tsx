@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const CTASection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-16 md:py-24">
       <div className="container">
         <ScrollReveal animation="scale">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-hero p-8 md:p-16 text-center">
-            {/* Background decoration */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary-foreground rounded-full blur-3xl" />
               <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl" />
@@ -23,14 +25,13 @@ const CTASection = () => {
 
               <ScrollReveal animation="fade-up" delay={100}>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
-                  ¿Listo para automatizar tus reservas?
+                  {t.cta.title}
                 </h2>
               </ScrollReveal>
 
               <ScrollReveal animation="fade-up" delay={200}>
                 <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-                  Únete a más de 500 restaurantes que ya disfrutan de reservas automáticas. 
-                  Solicita tu demo gratuita y descubre cómo podemos ayudarte.
+                  {t.cta.description}
                 </p>
               </ScrollReveal>
 
@@ -38,7 +39,7 @@ const CTASection = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button variant="hero" size="xl" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" asChild>
                     <a href="#contacto">
-                      Solicitar Demo Gratis
+                      {t.cta.primaryCta}
                       <ArrowRight className="w-5 h-5" />
                     </a>
                   </Button>
@@ -48,7 +49,7 @@ const CTASection = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Hablar por WhatsApp
+                      {t.cta.secondaryCta}
                     </a>
                   </Button>
                 </div>
@@ -56,7 +57,7 @@ const CTASection = () => {
 
               <ScrollReveal animation="fade-up" delay={400}>
                 <p className="mt-6 text-sm text-primary-foreground/60">
-                  Sin compromiso · Respuesta en 24h · Instalación en 1 semana
+                  {t.cta.footer}
                 </p>
               </ScrollReveal>
             </div>
