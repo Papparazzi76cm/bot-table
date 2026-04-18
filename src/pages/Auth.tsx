@@ -13,7 +13,6 @@ const authSchema = z.object({
 });
 
 const Auth = () => {
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -54,34 +53,15 @@ const Auth = () => {
     }
 
     try {
-      if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email: result.data.email,
-          password: result.data.password,
-        });
-        if (error) throw error;
-        toast({ title: "¡Bienvenido!" });
-      } else {
-        const { error } = await supabase.auth.signUp({
-          email: result.data.email,
-          password: result.data.password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/admin`,
-          },
-        });
-        if (error) throw error;
-        toast({
-          title: "¡Cuenta creada!",
-          description: "Ya puedes acceder al panel de administración.",
-        });
-      }
+      const { error } = await supabase.auth.signInWithPassword({
+        email: result.data.email,
+        password: result.data.password,
+      });
+      if (error) throw error;
+      toast({ title: "¡Bienvenido!" });
     } catch (error: any) {
-      let message = "Ha ocurrido un error";
-      if (error.message.includes("Invalid login credentials")) {
-        message = "Email o contraseña incorrectos";
-      } else if (error.message.includes("User already registered")) {
-        message = "Este email ya está registrado";
-      } else if (error.message.includes("Email not confirmed")) {
+      let message = "Email o contraseña incorrectos";
+      if (error.message?.includes("Email not confirmed")) {
         message = "Confirma tu email antes de acceder";
       }
       toast({
@@ -99,12 +79,10 @@ const Auth = () => {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-foreground mb-2">
-            {isLogin ? "Acceso Administrador" : "Crear Cuenta"}
+            Acceso Administrador
           </h1>
           <p className="text-muted-foreground">
-            {isLogin
-              ? "Accede al panel de gestión de leads"
-              : "Crea tu cuenta de administrador"}
+            Accede al panel de gestión de leads
           </p>
         </div>
 
@@ -162,22 +140,11 @@ const Auth = () => {
             className="w-full"
             disabled={isLoading}
           >
-            {isLoading
-              ? "Procesando..."
-              : isLogin
-              ? "Iniciar Sesión"
-              : "Crear Cuenta"}
+            {isLoading ? "Procesando..." : "Iniciar Sesión"}
           </Button>
 
-          <p className="text-center text-sm text-muted-foreground">
-            {isLogin ? "¿No tienes cuenta?" : "¿Ya tienes cuenta?"}{" "}
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-primary font-medium hover:underline"
-            >
-              {isLogin ? "Regístrate" : "Inicia sesión"}
-            </button>
+          <p className="text-center text-xs text-muted-foreground">
+            El acceso al panel de administración está restringido. Si necesitas una cuenta, contacta con el administrador.
           </p>
         </form>
 

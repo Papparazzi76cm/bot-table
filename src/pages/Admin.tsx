@@ -19,6 +19,7 @@ interface Lead {
 const Admin = () => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -46,10 +47,35 @@ const Admin = () => {
   }, [navigate]);
 
   useEffect(() => {
-    if (session?.user) {
+    const verifyAdminAndLoad = async () => {
+      if (!session?.user) return;
+
+      // Server-side admin verification via user_roles table
+      const { data: roleRow, error: roleError } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id)
+        .eq("role", "admin")
+        .maybeSingle();
+
+      if (roleError || !roleRow) {
+        setIsAdmin(false);
+        toast({
+          title: "Acceso denegado",
+          description: "No tienes permisos de administrador.",
+          variant: "destructive",
+        });
+        await supabase.auth.signOut();
+        navigate("/auth");
+        return;
+      }
+
+      setIsAdmin(true);
       fetchLeads();
-    }
-  }, [session]);
+    };
+
+    verifyAdminAndLoad();
+  }, [session, navigate]);
 
   const fetchLeads = async () => {
     setIsLoading(true);
