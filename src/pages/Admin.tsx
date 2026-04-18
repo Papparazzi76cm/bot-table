@@ -115,12 +115,16 @@ const Admin = () => {
     });
   };
 
-  if (!user) {
+  if (!user || isAdmin === null) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="animate-pulse text-muted-foreground">Cargando...</div>
       </div>
     );
+  }
+
+  if (!isAdmin) {
+    return null;
   }
 
   return (
